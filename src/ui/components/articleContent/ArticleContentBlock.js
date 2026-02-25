@@ -1,11 +1,9 @@
+import { BaseArticleContentBlock } from "./BaseArticleContentBlock";
 import { expect } from '../../../common/helpers/pw';
-import { BasePage } from '../BasePage';
 
-export class ViewArticlePage extends BasePage {
-  articleId;
-
+export class ArticleContentBlock extends BaseArticleContentBlock {
   constructor(page, userId = 0) {
-    super(page, userId);
+    super(page, userId)
     this.articleTitleHeader = page.getByRole('heading');
   }
 

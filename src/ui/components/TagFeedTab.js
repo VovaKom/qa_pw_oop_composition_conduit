@@ -1,25 +1,24 @@
-import { BaseComponent } from './BaseComponent';
+import { BaseComponent } from "./BaseComponent";
 import { ArticleFeedItem } from './ArticleFeedItem';
 import { expect } from '../../common/helpers/pw';
 
-export class GlobalFeedTab extends BaseComponent {
-  #globalFeedLink;
+export class TagFeedTab extends BaseComponent {
+  #tagFeedTab;
 
   constructor(page, userId = 0) {
     super(page, userId);
     this.articleFeedItem = new ArticleFeedItem(this.page, userId);
-    this.#globalFeedLink = this.page.getByText('Global Feed');
   }
 
-  async open() {
-    await this.step(`Open 'Global Feed' tab`, async () => {
-      await this.#globalFeedLink.click();
-    });
+  initTagFeedTab(articleTag) {
+    this.#tagFeedTab = this.page.getByText(`${articleTag}`).first();
   }
 
-  async assertTabLinkVisible() {
-    await this.step(`Assert 'Global Feed' link is visible`, async () => {
-      await expect(this.#globalFeedLink).toBeVisible();
+  async assertTabSelected(articleTag) {
+    this.initTagFeedTab(articleTag);
+    await this.step(`Assert '${articleTag}' Tag Feed tab is selected`,
+      async () => {
+        await expect(this.#tagFeedTab).toBeVisible();
     });
   }
 
