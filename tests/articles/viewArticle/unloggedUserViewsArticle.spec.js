@@ -9,7 +9,6 @@ test.use({ contextsNumber: 2, usersNumber: 2 });
 test.beforeEach(async ({ pages, users, articleWithoutTags }) => {
   await signUpUser(pages[0], users[0], 1);
   await createArticle(pages[0], articleWithoutTags, 1);
-  await pages[0].waitForTimeout(15000);
 });
 
 test('Unlogged user views other user article in the Global Feed section',

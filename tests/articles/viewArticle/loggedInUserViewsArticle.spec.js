@@ -26,8 +26,12 @@ test('Logged-in user views own article in the Tag Feed section', async ({
     internalHomePage,
 }) => {
   await internalHomePage.open();
-  await internalHomePage.popularTags.clickOnTag(articleWithOneTag.tags);
-  await internalHomePage.tagFeedTab.assertTabSelected(articleWithOneTag.tags);
+  await internalHomePage.popularTags.clickOnTag(articleWithOneTag.tags[0]);
+  await internalHomePage
+    .tagFeedTab
+    .assertTabSelected(
+      articleWithOneTag.tags[0]
+  );
   await internalHomePage.tagFeedTab.assertArticleVisible(
     articleWithOneTag.title,
     user.username,
